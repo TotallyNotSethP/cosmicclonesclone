@@ -4,7 +4,7 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    print(f"DEBUG: {client.user} is now online.\n")
+    print(f"DEBUG: {client.user} is now online.")
 
 @client.event
 async def on_message(message):
@@ -15,6 +15,7 @@ async def on_message(message):
     send = message.channel.send
 
     if command[0] == "$getrole":
+        print()
         print(f"DEBUG: {message.author} sent message \"{message.content}\"")
         roles = message.guild.roles
         if len(command) == 1:
@@ -42,6 +43,5 @@ async def on_message(message):
                 else:
                     print(f"404 Not Found: Role \"{role}\" doesn't exist (requested by \"{message.author}\")")
                     await send("NOT FOUND: That role doesn't exist.")
-        print()
 
 client.run('NzgwODg2NTgzNjMyODU1MDcx.X71nTQ.idnDDaWO1lahUrqecammbHJ1hNE')
