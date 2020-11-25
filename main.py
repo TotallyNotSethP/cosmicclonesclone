@@ -1,4 +1,5 @@
 import discord
+from os import environ
 
 client = discord.Client()
 
@@ -44,4 +45,4 @@ async def on_message(message):
                     print(f"404 Not Found: Role \"{role}\" doesn't exist (requested by \"{message.author}\")")
                     await send("NOT FOUND: That role doesn't exist.")
 
-client.run('NzgwODg2NTgzNjMyODU1MDcx.X71nTQ.idnDDaWO1lahUrqecammbHJ1hNE')
+client.run(environ["DISCORD_BOT_TOKEN"])
