@@ -71,6 +71,6 @@ async def on_message(message):
                 await send("NOT FOUND: That color doesn't exist in the database")
         except IndexError:
             print(f"400 Bad Request: {message.author} sent `$setcolor` command with no parameters.")
-            await send("SETCOLOR USAGE: $setcolor <color_name>\n(Some colors may not work)")
+            await send("SETCOLOR USAGE: $setcolor <color_name>\n(Some colors may not work; STILL IN BETA ~ REPORT BUGS)")
 
 client.run(environ["DISCORD_BOT_TOKEN"])
