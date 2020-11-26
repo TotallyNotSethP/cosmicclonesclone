@@ -59,10 +59,10 @@ async def on_message(message):
                 role = discord.utils.get(message.guild.roles, name=color_name)
                 await message.author.add_roles(role)
                 await role.edit(position=2)
-                print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex}")
+                print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
             except ValueError:
-                print(f"404 Not Found: Color \"{color_name}\" doesn't exist (requested by \"{message.author}\"")
+                print(f"404 Not Found: Color \"{color_name}\" doesn't exist (requested by \"{message.author}\")")
                 await send("NOT FOUND: That color doesn't exist in the database")
         except IndexError:
             print(f"400 Bad Request: {message.author} sent `$setcolor` command with no parameters.")
