@@ -60,15 +60,11 @@ async def on_message(message):
                     await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_hex)
                 role_added = False
-                while not role_added:
-                    try:
-                        await message.author.add_roles(role)
-                        role_added = True
-                    except AttributeError:
-                        print("Tried assigning role... failed. Will try again in 0.1 sec.")
-                        asyncio.sleep(0.1)
-                print(len(message.guild.roles)-2)
-                await role.edit(position=len(message.guild.roles)-2)
+                asyncio.sleep(0.1)
+                await message.author.add_roles(role)
+                position = len(message.guild.roles)-2
+                asyncio.sleep(0.1)
+                await role.edit(position=position)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
             except ValueError:
