@@ -55,10 +55,10 @@ async def on_message(message):
             color_name = command[1]
             try:
                 color_hex = webcolors.name_to_hex(color_name)
-                await message.guild.create_role(name=color_name, colour=discord.Colour(int(color_hex[1:], 16)))
+                await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_name)
                 await message.author.add_roles(role)
-                await role.edit(position=-2)
+                await role.edit(position=len(message.guild.roles)-1)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
             except ValueError:
