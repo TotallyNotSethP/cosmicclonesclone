@@ -58,7 +58,7 @@ async def on_message(message):
                 await message.guild.create_role(name=color_name, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_name)
                 await message.author.add_roles(role)
-                await role.edit(position=2)
+                await role.edit(position=-2)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
             except ValueError:
