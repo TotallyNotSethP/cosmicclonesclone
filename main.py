@@ -2,6 +2,7 @@
 
 import discord
 import webcolors
+import asyncio
 from os import environ
 
 client = discord.Client()
@@ -57,7 +58,14 @@ async def on_message(message):
                 color_hex = webcolors.name_to_hex(color_name)
                 await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_hex)
-                await message.author.add_roles(role)
+                role_added = False
+                while not role_added:
+                    try:
+                        await message.author.add_roles(role)
+                        role_added = True
+                    except AttributeError:
+                        print("Tried assigning role... failed. Will try again in 0.1 sec.")
+                        asyncio.sleep(0.1)
                 await role.edit(position=len(message.guild.roles)-2)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
