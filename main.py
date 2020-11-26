@@ -67,6 +67,7 @@ async def on_message(message):
                     except AttributeError:
                         print("Tried assigning role... failed. Will try again in 0.1 sec.")
                         asyncio.sleep(0.1)
+                print(len(message.guild.roles)-2)
                 await role.edit(position=len(message.guild.roles)-2)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
                 await send(f"SUCCESS: You have been colored \"{color_name}\"")
