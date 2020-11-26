@@ -56,7 +56,7 @@ async def on_message(message):
             try:
                 color_hex = webcolors.name_to_hex(color_name)
                 await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
-                role = discord.utils.get(message.guild.roles, name=color_name)
+                role = discord.utils.get(message.guild.roles, name=color_hex)
                 await message.author.add_roles(role)
                 await role.edit(position=len(message.guild.roles)-1)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
