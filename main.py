@@ -61,7 +61,7 @@ async def on_message(message):
                 role = discord.utils.get(message.guild.roles, name=color_hex)
                 await asyncio.sleep(0.1)
                 await message.author.add_roles(role)
-                position = len(message.guild.roles)-2
+                position = len(message.guild.roles)-3
                 await asyncio.sleep(0.1)
                 await role.edit(position=position)
                 print(f"200 OK: \"{message.author}\" was given the color \"{color_name}\" (hex {color_hex})")
