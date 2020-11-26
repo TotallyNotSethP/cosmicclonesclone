@@ -1,3 +1,5 @@
+# WARNING: DEVELOPMENT VERSION
+
 import discord
 from os import environ
 
