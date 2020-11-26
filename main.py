@@ -56,7 +56,7 @@ async def on_message(message):
             color_name = command[1]
             try:
                 color_hex = webcolors.name_to_hex(color_name)
-                if await discord.utils.get(message.guild.roles, name=color_hex) is not None:
+                if discord.utils.get(message.guild.roles, name=color_hex) is not None:
                     await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_hex)
                 role_added = False
