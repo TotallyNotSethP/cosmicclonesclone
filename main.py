@@ -53,13 +53,12 @@ async def on_message(message):
         print()
         print(f"DEBUG: \"{message.author}\" sent message \"{message.content}\"")
         try:
-            color_name = command[1]
+            color_name = "".join(command[1:])
             try:
                 color_hex = webcolors.name_to_hex(color_name)
                 if discord.utils.get(message.guild.roles, name=color_hex) is None:
                     await message.guild.create_role(name=color_hex, colour=discord.Colour(int(color_hex[1:], 16)))
                 role = discord.utils.get(message.guild.roles, name=color_hex)
-                role_added = False
                 await asyncio.sleep(0.1)
                 await message.author.add_roles(role)
                 position = len(message.guild.roles)-2
@@ -72,6 +71,6 @@ async def on_message(message):
                 await send("NOT FOUND: That color doesn't exist in the database")
         except IndexError:
             print(f"400 Bad Request: {message.author} sent `$setcolor` command with no parameters.")
-            await send("SETCOLOR USAGE: $setcolor <color_name>\nAny CSS3 color will work.\nIf you don't know what that means, too bad.")
+            await send("SETCOLOR USAGE: $setcolor <color_name>\n(Some colors may not work)")
 
 client.run(environ["DISCORD_BOT_TOKEN"])
