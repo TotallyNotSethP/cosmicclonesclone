@@ -49,6 +49,8 @@ async def on_message(message):
                     print(f"404 Not Found: Role \"{role}\" doesn't exist (requested by \"{message.author}\")")
                     await send("NOT FOUND: That role doesn't exist")
     elif command[0] == "$setcolor":
+        print()
+        print(f"DEBUG: \"{message.author}\" sent message \"{message.content}\"")
         try:
             color_name = command[1]
             try:
