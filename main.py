@@ -52,7 +52,7 @@ async def on_message(message):
     elif command[0] == "$setcolor":
         print()
         print(f"DEBUG: \"{message.author}\" sent message \"{message.content}\"")
-        try:
+        if len(command) > 1:
             color_name = "".join(command[1:])
             try:
                 color_hex = webcolors.name_to_hex(color_name)
@@ -69,7 +69,7 @@ async def on_message(message):
             except ValueError:
                 print(f"404 Not Found: Color \"{color_name}\" doesn't exist (requested by \"{message.author}\")")
                 await send("NOT FOUND: That color doesn't exist in the database")
-        except IndexError:
+        else:
             print(f"400 Bad Request: {message.author} sent `$setcolor` command with no parameters.")
             await send("SETCOLOR USAGE: $setcolor <color_name>\n(Some colors may not work; STILL IN BETA ~ REPORT BUGS)")
 
