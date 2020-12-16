@@ -1,4 +1,4 @@
-# WARNING: DEVELOPMENT VERSION
+# WARNING: BETA VERSION
 
 import discord
 import webcolors
